@@ -5,12 +5,16 @@ import Sidebar from "./Components/SideBar";
 import Content from "./Components/Content";
 import BottomBar from "./Components/BottomBar";
 import Login from "./Components/Login/Login";
+import Register from "./Components/Register/Register"
+import Forgot from "./Components/Login/Forgot"
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/forgot" element={<Forgot />} />
         <Route path="/" element={<>
         <div className="wrapper">
           <Sidebar />

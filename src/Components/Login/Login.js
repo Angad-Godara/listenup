@@ -60,39 +60,12 @@ function Login() {
                 alert(error.message)
             })
     }
-    // const githubLogin = () => {
-    //     auth.signInWithPopup(githubProvider)
-    //         .then((result) => {
-    //             store(result.user)
-    //         })
-    //         .catch((error) => {
-    //             alert(error.message)
-    //         })
-    // }
-    // const facebookLogin = () => {
-    //     auth.signInWithPopup(facebookProvider)
-    //         .then((result) => {
-    //             store(result.user)
-    //         })
-    //         .catch((error) => {
-    //             alert(error.message)
-    //         })
-    // }
-    // const twitterLogin = () => {
-    //     auth.signInWithPopup(twitterProvider)
-    //         .then((result) => {
-    //             store(result.user)
-    //         })
-    //         .catch((error) => {
-    //             alert(error.message)
-    //         })
-    // }
 
     return (
         <div className='login__wrapper'>
             <div className='login__container'>
                 <div className='login__form__wrapper'>
-                    <h2 className='login__logo'>Logo</h2>
+                    <h1 className='login__logo'>Logo</h1>
                     <form className='login__form'>
                         <span>
                             <input ref={emailRef} type="text" placeholder='E-mail' autoComplete="on" />
@@ -103,16 +76,13 @@ function Login() {
                     </form>
                     <button onClick={login} className='login__button'>Sign In</button>
                     <div className='login__actions'>
-                        <Link to='/forgotpassword'>Forgot Password?</Link>
+                        <Link to='/forgot'>Forgot Password?</Link>
                         <Link to='/register'>Sign Up</Link>
                     </div>
                     <div className='auth__options'>
                         <p>or you can sign in with</p>
                         <div className='login__options'>
                             <AiFillGoogleCircle onClick={googleLogin} className='logo__google login__option__logos' size={'30'} />
-                            {/* <AiFillGithub onClick={githubLogin} className='logo__github login__option__logos' size={'30'} /> */}
-                            {/* <BsLinkedin onClick={twitterLogin} className='logo__linkedin login__option__logos' size={'25'} style={{ borderRadius: '50%' }} /> */}
-                            {/* <BsFacebook onClick={facebookLogin} className='logo__facebook login__option__logos' size={'25'} /> */}
                         </div>
                     </div>
                     <div className='welcome__note'>
