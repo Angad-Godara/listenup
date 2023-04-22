@@ -1,0 +1,10 @@
+.setscreen>video{
+    height: 0;
+    width: 0;
+}
+
+.setfullscreen>video{
+    height: 100%;
+    width: 100%;
+    z-index: 150;
+}

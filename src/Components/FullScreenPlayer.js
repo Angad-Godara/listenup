@@ -3,14 +3,20 @@ import { Icon } from "../Icons";
 import { secondsToTime } from "../util";
 import CustomRange from "./CustomRange";
 
-function FullScreenPlayer({ toggle, state, controls, volumeIcon }) {
+function FullScreenPlayer({ toggle, state, controls, volumeIcon, isVideo, videoSrc }) {
 
 	const { current } = useSelector(state => state.player)
 
 	return (
 		<div className="h-full relative" onClick={controls[state?.playing ? 'pause' : 'play']}>
-			<div className="absolute inset-0 object-cover bg-center bg-cover blur-md opacity-30" style={{ backgroundImage: `url(${current.image})` }} />
+			{isVideo ?
 
+				<div className="h-screen w-screen setfullscreen">
+					{videoSrc}
+				</div>
+				:
+				<div className="absolute inset-0 object-cover bg-center bg-cover blur-md opacity-30" style={{ backgroundImage: `url(${current.image})` }} />
+			}
 			<div className="absolute opacity-70 top-8 left-8 gap-x-4 text-white flex items-center">
 				<Icon size={34} name="logo" />
 				<div className="text-xs">
@@ -18,7 +24,6 @@ function FullScreenPlayer({ toggle, state, controls, volumeIcon }) {
 					<h6 className="font-semibold mt-0.5">{current.title}</h6>
 				</div>
 			</div>
-
 			<div className="absolute left-8 bottom-36 flex items-center gap-x-5">
 				<img src={current.image} alt="" className="w-24 h-24 object-cover" />
 				<div className="self-end">
