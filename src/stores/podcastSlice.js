@@ -10,7 +10,6 @@ export const userSlice = createSlice({
     reducers: {
         storeAllPodcasts: (state, action) => {
             state.podcasts = action.payload
-            console.log(state.podcasts)
         },
         storeAllArtists: (state, action) => {
             state.artists = action.payload

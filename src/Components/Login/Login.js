@@ -14,6 +14,8 @@ function Login() {
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
 
+    const defaultURL = process.env.REACT_APP_DEFAULT_PhotoURL;
+
     const store = (authUser) => {
 
         // pending checkblocks 
