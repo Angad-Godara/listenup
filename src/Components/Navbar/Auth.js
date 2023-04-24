@@ -1,11 +1,16 @@
 import { Menu } from '@headlessui/react'
 import { Icon } from "../../Icons";
+import { Link } from 'react-router-dom';
+import { auth } from '../../firebase';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../stores/userSlice';
 
 function Auth() {
 
-    const user = {
-        name: 'John Snow',
-        avatar: 'https://i.scdn.co/image/ab6775700000ee856fca122911ed9eec4ce60c1e'
+    const user = useSelector(selectUser)
+
+    const Logout = (e) => {
+        auth.signOut();
     }
 
     return (
@@ -13,8 +18,8 @@ function Auth() {
             {({ open }) => (
                 <>
                     <Menu.Button className={`flex items-center h-8 rounded-3xl pr-2 ${open ? 'bg-active' : 'bg-black'} hover:bg-active`}>
-                        <img src={user.avatar} className={"w-8 h-8 rounded-full p-0.5 mr-2"} />
-                        <span className="text-sm font-semibold mr-2">{user.name}</span>
+                        <img src={user.photoURL} className={"w-8 h-8 rounded-full p-0.5 mr-2"} />
+                        <span className="text-sm font-semibold mr-2">{user.username}</span>
                         <span className={open ? 'rotate-180' : ''}>
                             <Icon size={16} name="downDir" />
                         </span>
@@ -43,12 +48,13 @@ function Auth() {
                         </Menu.Item>
                         <Menu.Item>
                             {({ active }) => (
-                                <a
+                                <Link
+                                    onClick={Logout}
                                     className={`h-10 flex items-center px-2 text-sm rounded ${active ? 'bg-white bg-opacity-10' : ''}`}
-                                    href="#"
+                                    to="/"
                                 >
                                     Log out
-                                </a>
+                                </Link>
                             )}
                         </Menu.Item>
                     </Menu.Items>

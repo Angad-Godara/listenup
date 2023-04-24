@@ -26,7 +26,7 @@ function Menu() {
                         <span>
                             <Icon name="collection" />
                         </span>
-                        Library
+                        Your Library
                     </NavLink>
                 </li>
             </ul>

@@ -5,17 +5,17 @@ import { BsFacebook, BsLinkedin } from 'react-icons/bs'
 import { Link, useNavigate } from 'react-router-dom'
 import db, { auth, googleProvider, githubProvider, facebookProvider, twitterProvider } from '../../firebase'
 import { useSelector } from 'react-redux'
-import { selectUser } from '../../Features/userSlice'
+import { selectUser } from '../../stores/userSlice'
 
 function Register() {
-    // const user = useSelector(selectUser);
+    const user = useSelector(selectUser);
     const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     if (user) {
-    //         navigate('/')
-    //     }
-    // }, [user])
+    useEffect(() => {
+        if (user) {
+            navigate('/')
+        }
+    }, [user])
 
 
     const defaultURL = process.env.REACT_APP_DEFAULT_PhotoURL;
@@ -44,7 +44,10 @@ function Register() {
                             email: authUser?.email,
                             username: authUser?.displayName,
                             photoURL: authUser?.photoURL,
-                            mstatus: 'NA',
+                            uploads: '0',
+                            vidUploads: '0',
+                            audUploads: '0',
+                            favourites: [],
                         })
                 }
             })
@@ -60,7 +63,10 @@ function Register() {
                         email: authUser.user.email,
                         username: username,
                         photoURL: defaultURL,
-                        mstatus: 'NA',
+                        uploads: '0',
+                        vidUploads: '0',
+                        audUploads: '0',
+                        favourites: [],
                     })
             }).catch((error) => {
                 alert(error.message)
@@ -76,39 +82,40 @@ function Register() {
                 alert(error.message)
             })
     }
-    // const githubLogin = () => {
-    //     auth.signInWithPopup(githubProvider)
-    //         .then((result) => {
-    //             store(result.user)
-    //         })
-    //         .catch((error) => {
-    //             alert(error.message)
-    //         })
-    // }
-    // const facebookLogin = () => {
-    //     auth.signInWithPopup(facebookProvider)
-    //         .then((result) => {
-    //             store(result.user)
-    //         })
-    //         .catch((error) => {
-    //             alert(error.message)
-    //         })
-    // }
-    // const twitterLogin = () => {
-    //     auth.signInWithPopup(twitterProvider)
-    //         .then((result) => {
-    //             store(result.user)
-    //         })
-    //         .catch((error) => {
-    //             alert(error.message)
-    //         })
-    // }
+    const githubLogin = () => {
+        auth.signInWithPopup(githubProvider)
+            .then((result) => {
+                store(result.user)
+            })
+            .catch((error) => {
+                alert(error.message)
+            })
+    }
+    const facebookLogin = () => {
+        auth.signInWithPopup(facebookProvider)
+            .then((result) => {
+                store(result.user)
+            })
+            .catch((error) => {
+                alert(error.message)
+            })
+    }
+    const twitterLogin = () => {
+        auth.signInWithPopup(twitterProvider)
+            .then((result) => {
+                store(result.user)
+            })
+            .catch((error) => {
+                alert(error.message)
+            })
+    }
 
     return (
         <div className='register__wrapper'>
             <div className='register__container'>
                 <div className='register__form__wrapper'>
-                    <h1 className='register__logo' >Logo</h1>
+                    <img className='register__logo' src={'https://logowik.com/content/uploads/images/674_spotify1.jpg'}
+                        alt='SSDC' />
                     <form className='register__form'>
                         <span>
                             {/* Username */}
@@ -141,13 +148,13 @@ function Register() {
                         <p>or you can sign in with</p>
                         <div className='register__options'>
                             <AiFillGoogleCircle onClick={googleLogin} className='logo__google register__option__logos' size={'30'} />
-                            {/* <AiFillGithub onClick={githubLogin} className='logo__github register__option__logos' size={'30'} />
+                            <AiFillGithub onClick={githubLogin} className='logo__github register__option__logos' size={'30'} />
                             <BsLinkedin onClick={twitterLogin} className='logo__linkedin register__option__logos' size={'25'} style={{ borderRadius: '50%' }} />
-                            <BsFacebook onClick={facebookLogin} className='logo__facebook register__option__logos' size={'25'} /> */}
+                            <BsFacebook onClick={facebookLogin} className='logo__facebook register__option__logos' size={'25'} />
                         </div>
                     </div>
                     <div className='welcome__note'>
-                        <h3>Welcome to ListenUp</h3>
+                        <h3>Welcome to Listenup</h3>
                     </div>
                 </div>
             </div>
