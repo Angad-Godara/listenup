@@ -13,6 +13,7 @@ import Home from "./views/Home";
 import Navbar from "./Components/Navbar";
 import Search from "./views/Search";
 import Collection from "./views/Collection";
+import { storeAllPodcasts } from "./stores/podcastSlice";
 
 function App() {
 
@@ -20,7 +21,29 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+
+    const fetchAllPodcasts = () => {
+      db
+        .collection('podcasts')
+        .onSnapshot(snap => {
+          dispatch(storeAllPodcasts(snap.docs.map(pod => ({
+            title: pod.data()?.title,
+            id: pod?.id,
+            description: pod.data()?.description,
+            genre: pod.data()?.genre,
+            src: pod.data()?.src,
+            video: pod.data()?.src,
+            image: pod.data()?.thumbnail,
+            artist: pod.data()?.artist,
+            isVideo: (pod.data()?.type === 'video' ? true : false),
+          }))))
+        })
+    }
+
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
+
+      fetchAllPodcasts();
+
       if (authUser) {
         // fetching user from db
         db

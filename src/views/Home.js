@@ -1,7 +1,11 @@
+import { useSelector } from "react-redux";
 import Section from "../Components/Section";
 import songs from "../data/songs"
+import { selectPodcasts } from "../stores/podcastSlice";
 
 function Home() {
+
+	const { podcasts } = useSelector(selectPodcasts)
 
 	return (
 		<div className="grid gap-y-8">
@@ -9,7 +13,7 @@ function Home() {
 				title="Recently played"
 				// no more podcasts to show
 				// more="/recentlyplayed"
-				items={songs}
+				items={podcasts}
 			/>
 			<Section
 				title="Shows to try"
