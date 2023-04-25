@@ -19,7 +19,7 @@ export default [
 	},
 	{
 		id: 4,
-		title: 'Bangra beats',
+		title: 'Bhangra beats',
 		cover: 'https://i.scdn.co/image/ab67706f000000027ea4d505212b9de1f72c5112',
 		color: '#dc148b'
 	},
