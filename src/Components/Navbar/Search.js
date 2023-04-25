@@ -19,13 +19,15 @@ function Search() {
   const { podcasts } = useSelector(selectPodcasts);
 
   const updateCurrent = (item) => {
-	setInputText('')
+    setInputText('')
     if (current.id === item.id) {
-      if (playing) {
-        controls.pause();
-      } else {
-        controls.play();
-      }
+      // as I don't wanna pause it using the search
+      // maybe I can replay it
+      // if (playing) {
+      //   controls.pause();
+      // } else {
+      //   controls.play();
+      // }
     } else {
       dispatch(setCurrent(item));
     }
@@ -61,7 +63,7 @@ function Search() {
         <input
           autoFocus={true}
           onChange={inputHandler}
-		  value={inputText}
+          value={inputText}
           type="text"
           id="search-input"
           className="h-10 pl-12 outline-none text-black font-medium bg-white rounded-3xl text-sm placeholder-black/50 max-w-full w-[22.75rem]"
@@ -72,15 +74,15 @@ function Search() {
           <div className="searchres__wrapper">
             <ul className="searchres__list">
               {filteredpodcasts.map((item) => (
-					  <li
-					  onClick={() => updateCurrent(item)}
-					  className="seacrchres__item"
-					  key={item.id}
-					  >
+                <li
+                  onClick={() => updateCurrent(item)}
+                  className="seacrchres__item"
+                  key={item.id}
+                >
                   <img className="search__img" src={item.image} alt="" />
                   <span>{addThreeDots(item.title)}</span>
                 </li>
-			  ))}
+              ))}
             </ul>
           </div>
         </div>

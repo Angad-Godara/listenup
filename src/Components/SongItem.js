@@ -38,7 +38,7 @@ function SongItem({ item }) {
         <NavLink
             key={item.id}
             to="/"
-            className={"bg-footer p-4 rounded hover:bg-active group"}
+            className={"bg-footer p-4 rounded hover:bg-active group"} style={{ margin: '7px' }}
         >
             <div className="pt-[100%] relative mb-4">
                 <img src={item.image} className={`absolute inset-0 object-cover w-full h-full ${imageStyle(item)}`} />
@@ -54,7 +54,7 @@ function SongItem({ item }) {
             <p className="line-clamp-2 text-link text-sm mt-1">
                 {item.description}
             </p>
-        </NavLink>
+        </NavLink >
     )
 }
 
